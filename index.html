@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para o Meu Amor ❤️</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(135deg, #ff4d6d, #ff8fa3);
+        color: white;
+        text-align: center;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    #inicio {
+        display: block;
+    }
+
+    .container {
+        display: none;
+        animation: aparecer 1.5s ease;
+    }
+
+    button {
+        padding: 20px 40px;
+        font-size: 22px;
+        background-color: white;
+        color: #ff4d6d;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        transform: scale(1.1);
+        background-color: #ffe5ec;
+    }
+
+    h1 {
+        font-size: 40px;
+        margin-bottom: 10px;
+    }
+
+    #contador {
+        font-size: 28px;
+        margin-top: 20px;
+    }
+
+    @keyframes aparecer {
+        from {opacity: 0; transform: translateY(30px);}
+        to {opacity: 1; transform: translateY(0);}
+    }
+</style>
+</head>
+
+<body>
+
+<div id="inicio">
+    <button onclick="mostrarSite()">Clique aqui amor ❤️</button>
+</div>
+
+<div class="container" id="conteudo">
+    <h1>Estamos juntos há:</h1>
+    <div id="contador"></div>
+</div>
+
+<!-- Música (coloque o arquivo MP3 na mesma pasta do HTML) -->
+<audio id="musica" loop>
+    <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+function mostrarSite() {
+    document.getElementById("inicio").style.display = "none";
+    document.getElementById("conteudo").style.display = "block";
+
+    document.getElementById("musica").play();
+    atualizarContador();
+    setInterval(atualizarContador, 1000);
+}
+
+// DATA DO INÍCIO DO NAMORO (20 OUTUBRO 2025)
+const dataInicio = new Date(2025, 9, 20); 
+// (mês começa do 0 → outubro = 9)
+
+function atualizarContador() {
+    const agora = new Date();
+
+    let anos = agora.getFullYear() - dataInicio.getFullYear();
+    let meses = agora.getMonth() - dataInicio.getMonth();
+    let dias = agora.getDate() - dataInicio.getDate();
+
+    if (dias < 0) {
+        meses--;
+        const ultimoMes = new Date(agora.getFullYear(), agora.getMonth(), 0);
+        dias += ultimoMes.getDate();
+    }
+
+    if (meses < 0) {
+        anos--;
+        meses += 12;
+    }
+
+    document.getElementById("contador").innerHTML =
+        anos + " anos, " + meses + " meses e " + dias + " dias ❤️";
+}
+</script>
+
+</body>
+</html>
+
